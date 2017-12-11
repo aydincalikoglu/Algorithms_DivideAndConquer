@@ -1,3 +1,11 @@
+#   Verilen Arrayi 2 parçaya bölüyor ve bu iki parçayı ortadan başlayarak bir artan bir azalan iki döngü ile subArray bulan
+# ve O(n) çalışan bir crossMin fonksiyonu ile aralarindaki ortaklara bakiyor.
+# kendisi, solSubArray , sagSubArray ve CrossMin gelen sonuclari karsilastirarak en kucuk degere sahip sab Arrayi buluyor.
+#   Time Complexity = 2 T(n/2)+O(n)
+#   Worst Case min_subarray_finder(n)=O(nlogn)
+
+
+
 # CrossMin : T(n)= O(n)
 def crossMin(arr):
     start=0
@@ -29,8 +37,6 @@ def min_subarray_finder(array):
     size=len(array)
     halfSize=(int)(size/2)
     sumArray= sum(array)
-
-
     subMinArray=array
     if size<2:
         return array

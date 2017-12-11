@@ -1,21 +1,35 @@
 # 2 String Karşılaştıran ve Divide and conquer çalışan bir algoritma tasarladım. (matchStr)
 # Orta kısmı kontrol etmek için midMatchStr Fonksiyonu tasarladim.
 # String Array  karşılaştırmak için matchStr Fonksiyonundan yararlanıcak şekilde divide and conquer bir algoritma tasarladim.
-# Contains Method O(1) dusunursek ;
-# midMatchStr(n)=O(n)
+
+
+
+
+# midMatchStr(n)=O(n) contains method o(1) düşünürsek
 # matchStr(n)=θ(nlogn)=T(n/2)+O(n)
 # longest_common_postfix(n)= θ(nlog^2 n) = T(n/2)+θ(nlogn)
 
+# O(n) string karsilastirma O(1) dersek.
+def contains(string,word):
+    sSize=len(string)
+    wSize= len(word)
+    if wSize>sSize:
+        return False
+    if string[:wSize]==word:
+        return True
+    else:
+        return contains(string[1:],word)
 
-# T(n) = O(n) if we think contains method O(1)
+
+# T(n) = O(n)
 def midMatchStr(str1,str2):
     newStr=""
     size = len(str2)
     halfSize=(int)(size/2)
 
     for i in reversed(range(0,halfSize)):
-        if (str(str1).__contains__(newStr)):
-            if(str(str1).__contains__(str2[i])):
+        if (contains(str1,newStr)):
+            if(contains(str1,str2[i])):
                 newStr=str2[i]+newStr
             else:
                 break
@@ -23,8 +37,8 @@ def midMatchStr(str1,str2):
             break
 
     for i in range(halfSize,size):
-        if (str(str1).__contains__(newStr)):
-            if(str(str1).__contains__(str2[i])):
+        if (contains(str1,newStr)):
+            if(contains(str1,str2[i])):
                 newStr+=str2[i]
             else:
                 break
@@ -37,7 +51,7 @@ def midMatchStr(str1,str2):
 def matchStr(str1,str2):
     size = len(str2)
     halfSize=(int)(size/2)
-    if str(str1).__contains__(str2):
+    if contains(str1,str2):
         return str2
     elif size<2:
         return ""
@@ -75,9 +89,7 @@ def longest_common_postfix(array):
         st = matchStr(subTextLeft,subTextRight)
         return matchStr(subTextMid,st)
 
-"""
 inpStrings = ["absorptivity", "circularity", "electricity", "importunity", "humanity"]
 lcp = longest_common_postfix(inpStrings)
 print(lcp)
 #Output: ity
-"""
